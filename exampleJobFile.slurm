@@ -5,15 +5,15 @@ SBATCH --get-user-env=L             #Replicate login environment
 
 ##NECESSARY JOB SPECIFICATIONS
 SBATCH --job-name=JobExample1       #Set the job name to "JobExample1"
-SBATCH --time=00:00:10              #Set the wall clock limit to 1hr and 30min
+SBATCH --time=01:30:00              #Set the wall clock limit to 1hr and 30min
 SBATCH --ntasks=1                   #Request 1 task
 SBATCH --mem=2560M                  #Request 2560MB (2.5GB) per node
 SBATCH --output=Example1Out.%j      #Send stdout/err to "Example1Out.[jobID]"
 
 ##OPTIONAL JOB SPECIFICATIONS
-SBATCH --account=diya.li             #Set billing account to 123456
+SBATCH --account=122749065275             #Set billing account to 123456
 SBATCH --mail-type=ALL              #Send email on all job events
-SBATCH --mail-user=email_address    #Send all emails to email_address
+SBATCH --mail-user=diya.li@tamu.edu    #Send all emails to email_address
 
 #First Executable Line
 python test.py
