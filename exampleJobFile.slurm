@@ -4,11 +4,11 @@
 #SBATCH --get-user-env=L             #Replicate login environment
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=pyExample_1       #Set the job name to "JobExample1"
+#SBATCH --job-name=Example_1       #Set the job name to "JobExample1"
 #SBATCH --time=1-1:30:00              #Set the wall clock limit to 1 day 1hr and 30min
 #SBATCH --ntasks=1                   #Request 1 task
 #SBATCH --mem=2560M                  #Request 2560MB (2.5GB) per node
-#SBATCH --output=pyExample_1Out.%j      #Send stdout/err to "Example1Out.[jobID]"
+#SBATCH --output=Example_1Out.%j      #Send stdout/err to "Example1Out.[jobID]"
 
 ##OPTIONAL JOB SPECIFICATIONS
 #SBATCH --account=122749065275             #Set billing account to 123456
@@ -21,6 +21,7 @@ echo "SLURM_JOBID=$SLURM_JOBID"
 
 # main job
 env | grep SLURM
+rm -f Example*
 ./init.sh
 
 
