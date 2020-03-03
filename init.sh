@@ -11,16 +11,13 @@ WORKDIR=$SCRATCH/HPRC-Python3.7-Example
 module load Python/3.7.0-intel-2018b
 # create Virtual Env
 cd $WORKDIR
-# create new directory
-mkdir python_project
-cd python_project
 # create virtual environment to install your own package
 virtualenv venv
 
 
 ######### Activate
 # go to project foler
-cd $WORKDIR/python_project
+cd $WORKDIR
 # activate environment
 source venv/bin/activate
 
