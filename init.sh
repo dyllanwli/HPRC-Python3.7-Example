@@ -4,12 +4,13 @@
 
 # loging to your machine with you netid and pass first.
 
+WORKDIR=$SCRATCH/HPRC-Python3.7-Example
 
 ######## Set up
 # load Python
 module load Python/3.7.0-intel-2018b
 # create Virtual Env
-cd $SCRATCH/HPRC-Python3.7-Example
+cd $WORKDIR
 # create new directory
 mkdir python_project
 cd python_project
@@ -19,7 +20,7 @@ virtualenv venv
 
 ######### Activate
 # go to project foler
-cd $SCRATCH/python_project
+cd $WORKDIR/python_project
 # activate environment
 source venv/bin/activate
 
