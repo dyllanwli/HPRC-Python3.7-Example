@@ -9,7 +9,7 @@
 # load Python
 module load Python/3.7.0-intel-2018b
 # create Virtual Env
-cd $SCRATCH
+cd $SCRATCH/HPRC-Python3.7-Example
 # create new directory
 mkdir python_project
 cd python_project
@@ -22,14 +22,12 @@ virtualenv venv
 cd $SCRATCH/python_project
 # activate environment
 source venv/bin/activate
-# check the pip list
-# pip list
 
 ######### Install package
-pip install numpy
+# pip install numpy
 pip install pymongo
-# check pip list
-# pip list
+pip list
+python test.py
 
 ######### Deactivate
 deactivate 
