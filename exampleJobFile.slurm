@@ -13,7 +13,7 @@
 ##OPTIONAL JOB SPECIFICATIONS
 #SBATCH --account=122749065275             #Set billing account to 123456
 #SBATCH --mail-type=ALL              #Send email on all job events
-#SBATCH --mail-user=diya.li@tamu.edu    #Send all emails to email_address
+#SBATCH --mail-user=test@email.com    #Send all emails to email_address
 
 #First Executable Line
 echo "starting at `date` on `hostname`"
