@@ -88,7 +88,7 @@ def create_csv(filename):
 
 def write_csv(data):
     filename = datetime.now().strftime("%Y%m%d-%H") + ".csv"
-    if os.path.isfile('filename'):
+    if os.path.isfile(filename):
         pass
     else:
         create_csv(filename)
