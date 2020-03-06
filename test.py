@@ -39,8 +39,8 @@ def sperateBoundbox(degree):
     return boxs
 
 
-def create_csv():
-    filename = datetime.now().strftime("%Y%m%d-%H%M") + ".csv"
+def create_csv(filename):
+    print("Start running on", filename)
     title = ['_api',
              '_json',
              'author',
@@ -84,13 +84,15 @@ def create_csv():
         writer.writerow(title)
 
 def write_csv(data):
-    filename = datetime.now().strftime("%Y%m%d-%H%M") + ".csv"
+    filename = datetime.now().strftime("%Y%m%d-%H") + ".csv"
+    if os.path.isfile('filename'):
+        pass
+    else:
+        create_csv(filename)
     with open(filename, 'a') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(data)
-
-stat = []
-create_csv()
+        
 print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
 #override tweepy.StreamListener to add logic to on_status
 class MyStreamListener(tweepy.StreamListener):
