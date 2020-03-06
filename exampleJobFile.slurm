@@ -25,7 +25,7 @@ WORKDIR=$SCRATCH/HPRC-Python3.7-Example
 
 ######## Set up
 # load Python
-# module load Python/3.7.0-intel-2018b
+module load Python/3.7.0-intel-2018b
 # create Virtual Env
 # cd $WORKDIR
 # create virtual environment to install your own package
