@@ -21,8 +21,22 @@ echo "SLURM_JOBID=$SLURM_JOBID"
 
 # main job
 env | grep SLURM
-./init.sh
+WORKDIR=$SCRATCH/HPRC-Python3.7-Example
+
+######## Set up
+# load Python
+# module load Python/3.7.0-intel-2018b
+# create Virtual Env
+# cd $WORKDIR
+# create virtual environment to install your own package
+# virtualenv venv
 
 
+######### Activate
+# go to project foler
+cd $WORKDIR
+# activate environment
+source venv/bin/activate
+python test.py
 echo "ended at `date` on `hostname`"
 exit 0

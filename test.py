@@ -1,2 +1,4 @@
-for i in range(200):
+import pymongo
+
+for i in range(200):    
     print(i)
