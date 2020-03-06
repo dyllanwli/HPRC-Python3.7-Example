@@ -3,6 +3,7 @@ from datetime import datetime
 import csv
 with open('token.tk', 'r') as f:
 	consumer_key, consumer_secret, access_token, access_token_secret = f.read().split(',')
+    print(consumer_key, consumer_secret, access_token, access_token_secret)
 
 # setup api
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -112,7 +113,6 @@ class MyStreamListener(tweepy.StreamListener):
 
         # returning non-False reconnects the stream, with backoff.
 
-print(api.auth)
 print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))   
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
