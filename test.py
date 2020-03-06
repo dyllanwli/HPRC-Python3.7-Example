@@ -109,7 +109,7 @@ class MyStreamListener(tweepy.StreamListener):
         for attr in dir(status):
             if not attr.startswith("__"):
                 contents.append(getattr(status, attr))
-        print(status.text)
+        # print(status.text)
         write_csv(contents)
 
     def on_error(self, status_code):
@@ -119,7 +119,6 @@ class MyStreamListener(tweepy.StreamListener):
             return False
 
         # returning non-False reconnects the stream, with backoff.
-
 
 print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
 myStreamListener = MyStreamListener()
