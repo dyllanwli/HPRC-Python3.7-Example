@@ -23,9 +23,9 @@ source venv/bin/activate
 
 ######### Install package
 # pip install numpy
-pip install pymongo
+pip install tweepy
 pip list
 python test.py
 
 ######### Deactivate
-deactivate 
+# deactivate 
