@@ -4,7 +4,7 @@ import csv
 with open('token.tk', 'r') as f:
 	consumer_key, consumer_secret, access_token, access_token_secret = f.read().split(',')
     print(consumer_key, consumer_secret, access_token, access_token_secret)
-
+    
 # setup api
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
