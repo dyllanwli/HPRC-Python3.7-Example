@@ -1,4 +1,8 @@
 import tweepy
+from datetime import datetime
+import csv
+with open('token.tk', 'r') as f:
+	consumer_key, consumer_secret, access_token, access_token_secret = f.read().split(',')
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -35,9 +39,8 @@ def sperateBoundbox(degree):
     return boxs
 
 
-import csv
-
 def create_csv():
+    filename = datetime.now().strftime("%Y%m%d-%H%M") + ".csv"
     title = ['_api',
              '_json',
              'author',
@@ -76,17 +79,19 @@ def create_csv():
              'timestamp_ms',
              'truncated',
              'user']
-    with open('example.csv', 'w') as outfile:
+    with open(filename, 'w') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(title)
 
 def write_csv(data):
-    with open('example.csv', 'a') as outfile:
+    filename = datetime.now().strftime("%Y%m%d-%H%M") + ".csv"
+    with open(filename, 'a') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(data)
 
-status_frame = []
+stat = []
 create_csv()
+print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
 #override tweepy.StreamListener to add logic to on_status
 class MyStreamListener(tweepy.StreamListener):
 
@@ -95,7 +100,8 @@ class MyStreamListener(tweepy.StreamListener):
         for attr in dir(status):
             if not attr.startswith("__"):
                 contents.append(getattr(status, attr))
-                write_csv(contents)
+#         print(contents)
+        write_csv(contents)
         
     def on_error(self, status_code):
         if status_code == 420:
