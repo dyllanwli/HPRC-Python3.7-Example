@@ -1,13 +1,11 @@
-import tweepy
+# import tweepy
 from datetime import datetime
 import csv
 import os
 
 consumer_key, consumer_secret, access_token, access_token_secret = "", "", "", ""
 with open("token.tk", "r") as f:
-    consumer_key, consumer_secret, access_token, access_token_secret = f.read().split(
-        ","
-    )
+    consumer_key, consumer_secret, access_token, access_token_secret = [line.strip() for line in f.readlines()]
 
 print(consumer_key, consumer_secret, access_token, access_token_secret)
 # setup api
