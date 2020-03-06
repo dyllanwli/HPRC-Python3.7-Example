@@ -102,7 +102,7 @@ class MyStreamListener(tweepy.StreamListener):
         for attr in dir(status):
             if not attr.startswith("__"):
                 contents.append(getattr(status, attr))
-#         print(contents)
+        print(status.text)
         write_csv(contents)
         
     def on_error(self, status_code):
