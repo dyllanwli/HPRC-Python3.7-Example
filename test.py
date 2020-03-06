@@ -1,6 +1,7 @@
 import tweepy
 from datetime import datetime
 import csv
+import os
 
 consumer_key, consumer_secret, access_token, access_token_secret = "","","",""
 with open('token.tk', 'r') as f:
