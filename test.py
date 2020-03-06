@@ -8,6 +8,8 @@ with open("token.tk", "r") as f:
     consumer_key, consumer_secret, access_token, access_token_secret = f.read().split(
         ","
     )
+
+print(consumer_key, consumer_secret, access_token, access_token_secret)
 # setup api
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -15,6 +17,9 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 boundbox = [-171.791110603, 18.91619, -66.96466, 71.3577635769]
 
+# Test api
+public_tweets = api.home_timeline()
+print(len(public_tweets))
 
 def sperateBoundbox(degree):
 
