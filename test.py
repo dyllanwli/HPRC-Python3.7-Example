@@ -4,6 +4,7 @@ import csv
 with open('token.tk', 'r') as f:
 	consumer_key, consumer_secret, access_token, access_token_secret = f.read().split(',')
 
+# setup api
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
@@ -92,8 +93,7 @@ def write_csv(data):
     with open(filename, 'a') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(data)
-        
-print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
+
 #override tweepy.StreamListener to add logic to on_status
 class MyStreamListener(tweepy.StreamListener):
 
@@ -111,7 +111,9 @@ class MyStreamListener(tweepy.StreamListener):
             return False
 
         # returning non-False reconnects the stream, with backoff.
-        
+
+print(api.auth)
+print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))   
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 myStream.filter(locations = boundbox, is_async=False)
