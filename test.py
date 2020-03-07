@@ -4,8 +4,6 @@ import csv
 import os
 import daemon
 
-from spam import do_main_program
-
 consumer_key, consumer_secret, access_token, access_token_secret = "", "", "", ""
 with open("token.tk", "r") as f:
     consumer_key, consumer_secret, access_token, access_token_secret = [line.strip() for line in f.readlines()]
