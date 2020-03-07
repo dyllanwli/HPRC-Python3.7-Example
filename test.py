@@ -2,6 +2,9 @@ import tweepy
 from datetime import datetime
 import csv
 import os
+import daemon
+
+from spam import do_main_program
 
 consumer_key, consumer_secret, access_token, access_token_secret = "", "", "", ""
 with open("token.tk", "r") as f:
@@ -123,8 +126,9 @@ class MyStreamListener(tweepy.StreamListener):
 
         # returning non-False reconnects the stream, with backoff.
 
-print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
-myStreamListener = MyStreamListener()
-myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
-myStream.filter(locations=boundbox, is_async=False)
+with daemon.DaemonContext():
+    print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
+    myStreamListener = MyStreamListener()
+    myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
+    myStream.filter(locations=boundbox, is_async=False)
 
