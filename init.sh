@@ -26,7 +26,7 @@ source venv/bin/activate
 pip install tweepy
 pip install python-daemon
 pip list
-nohup python test.py
+python test.py
 
 ######### Deactivate
 # deactivate 
