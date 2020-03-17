@@ -4,21 +4,17 @@ import csv
 import os
 # import daemon
 
-consumer_key, consumer_secret, access_token, access_token_secret = "", "", "", ""
-with open("token.tk", "r") as f:
-    consumer_key, consumer_secret, access_token, access_token_secret = [line.strip() for line in f.readlines()]
+def test(api):
+    # Test api
+    public_tweets = api.home_timeline()
+    print(len(public_tweets))
 
-print(consumer_key, consumer_secret, access_token, access_token_secret)
-# setup api
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
 
-api = tweepy.API(auth)
-boundbox = [-171.791110603, 18.91619, -66.96466, 71.3577635769]
-
-# Test api
-public_tweets = api.home_timeline()
-print(len(public_tweets))
+def load_config_tk(filename):
+    with open(filename, "r") as f:
+        consumer_key, consumer_secret, access_token, access_token_secret = [line.strip() for line in f.readlines()]
+        print(consumer_key, consumer_secret, access_token, access_token_secret)
+        return consumer_key, consumer_secret, access_token, access_token_secret
 
 def sperateBoundbox(degree):
 
@@ -110,11 +106,12 @@ def write_csv(data):
 class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status):
         contents = []
-        for attr in dir(status):
-            if not attr.startswith("__"):
-                contents.append(getattr(status, attr))
-        # print(status.text)
-        write_csv(contents)
+        if ignoreGeoTag or status.geo is not None:
+            for attr in dir(status):
+                if not attr.startswith("__"):
+                    contents.append(getattr(status, attr))
+            # print(status.text)
+            write_csv(contents)
 
     def on_error(self, status_code):
         if status_code == 420:
@@ -123,6 +120,24 @@ class MyStreamListener(tweepy.StreamListener):
             return False
 
         # returning non-False reconnects the stream, with backoff.
+
+
+
+consumer_key, consumer_secret, access_token, access_token_secret = load_config_tk("token.tk")
+
+# setup api
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+
+# test
+test(api)
+
+#setup boundbox
+boundbox = [-171.791110603, 18.91619, -66.96466, 71.3577635769]
+
+#setup geoconfig: if Ture, get every tweet; if False, only tweet with geotag will write down
+ignoreGeoTag = False
 
 # with daemon.DaemonContext():
 print("Start running on", datetime.now().strftime("%Y%m%d-%H%M%S"))
