@@ -8,7 +8,7 @@ virtualenv venv
 
 source venv/bin/activate
 
-nohup python test.py & >> nohup.out 2$1
+nohup python test.py & >> nohup.out
 
 ######### Deactivate
 # deactivate 
